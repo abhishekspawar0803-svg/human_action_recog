@@ -90,6 +90,20 @@ Since this is a video-based model, training is significantly more computationall
 
 ![Confusion Matrix](images/conf_matrix.png)
 
+The model achieved **48% overall accuracy** on the KTH test set (120 samples, 6 action classes).
+
+| Class            | Precision | Recall   | F1-Score | Support |
+| ---------------- | --------- | -------- | -------- | ------- |
+| 0 (boxing)       | 0.00      | 0.00     | 0.00     | 20      |
+| 1 (handclapping) | 0.33      | 1.00     | 0.50     | 20      |
+| 2 (handwaving)   | 0.00      | 0.00     | 0.00     | 20      |
+| 3 (jogging)      | 0.55      | 0.30     | 0.39     | 20      |
+| 4 (running)      | 0.64      | 0.80     | 0.71     | 20      |
+| 5 (walking)      | 0.67      | 0.80     | 0.73     | 20      |
+| **Macro Avg**    | **0.36**  | **0.48** | **0.39** | **120** |
+
+The model performs well on locomotion actions (running, walking) but struggles with upper-body gestures (boxing, handwaving), which share similar spatial envelopes in fixed-length clips. This baseline demonstrates the challenge of clip-level classification without temporal attention mechanisms and motivates future work with LSTM or transformer-based temporal modeling.
+
 ## Repository Structure
 
 ```bash
@@ -120,6 +134,7 @@ jupyter notebook human_action.ipynb
 ```
 
 4. Run all cells to:
+
 - download the dataset,
 - preprocess videos into clips,
 - train the model,
